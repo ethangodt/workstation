@@ -135,6 +135,47 @@ version pinning. Unity lives under `unity/` rather than at the root so the iOS
 side and export artifacts have a clean home beside it. Git LFS for binary
 assets; Unity-standard `.gitignore`.
 
+## Architectural decision records
+
+Create an `adr/` directory in the `mitts-of-mayhem` repo. Every architectural
+decision in this plan gets its own record, written as part of the repo setup
+rather than retroactively — the reasoning above is the raw material and should be
+moved into these files, not duplicated by hand later.
+
+```
+mitts-of-mayhem/
+  adr/
+    0000-template.md
+    0001-unity-as-a-library.md
+    0002-swift-owns-meta-game-unity-owns-the-moment.md
+    0003-bridge-transport.md
+    0004-tracking-coordinate-space.md
+    0005-single-repo-layout.md
+```
+
+Numbered sequentially, never renumbered, never deleted. A decision that gets
+reversed is superseded by a new record that links back to it, and the original is
+marked `Superseded by ADR-NNNN` — the record of having believed something is the
+point.
+
+Each record follows the same shape (`0000-template.md`):
+
+- **Title** — the decision, stated as a claim.
+- **Status** — Proposed / Accepted / Superseded by ADR-NNNN.
+- **Date**.
+- **Context** — the forces in play. What made this a decision rather than a
+  default, and what was true at the time.
+- **Decision** — what was chosen.
+- **Consequences** — what this buys, what it costs, and what it forecloses.
+  Explicitly including the constraints accepted (the UaaL limitations, image
+  space not being real space) and the signal that would reopen the decision.
+- **Alternatives considered** — the options rejected and why, with enough detail
+  that a future reader does not have to re-derive the argument.
+
+ADR-0001 in particular should record that Milestone 0 is its gate: the decision
+is Proposed until the dual-screen spike passes, and a failed spike supersedes it
+rather than quietly revising it.
+
 ## Milestones
 
 ### Milestone 0 — dual-screen spike (hard gate)
@@ -158,6 +199,7 @@ Do not proceed past this gate on a partial result.
 ### Milestone 1 — Unity project skeleton
 
 - Unity 6000.2.6f2 project at `unity/`, URP, iOS build target.
+- `adr/` populated with the records listed above.
 - `ITrackingSource` interface and the `TrackingSample` struct above.
 - `MockTrackingSource`: replay from a recorded JSON file, plus mouse-driven puck
   position for live fiddling.
