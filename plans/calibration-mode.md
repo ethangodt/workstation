@@ -97,6 +97,10 @@ agreement — and stays not comparable to pose confidence.
   order is stable frame to frame. Obstacles barely move; matching identities
   across frames (so each could get a `SampleStabilizer`) is deferred until the
   game task shows flicker.
+- **Slot order is not identity.** Slots are compacted and sorted, so a dropped,
+  split, or bumped obstacle shifts the others. Consumers that need identity match
+  detections against their own history — the game task does, against its
+  baselines (see [improved-unity-game](improved-unity-game.md)).
 - **Optional.** A player with no obstacles skips the step and everything else
   works.
 
@@ -297,7 +301,8 @@ Verifiable before any detection changes: the existing detectors run on
 - A warning when two entities' colours overlap.
 - Calibration profiles, and any default calibration.
 - Freeze-frame during calibration.
-- Obstacle identity tracking and stabilization.
+- Obstacle identity tracking and stabilization. Identity is matched in Unity by
+  the game task instead.
 - Auto-seeding tolerances from the tapped blob.
 - Scrubbing in the file source.
 - Recording footage from the pipeline on device.
