@@ -14,7 +14,7 @@ something like 15 ms reachable?
 
 - **15 ms end to end is custom VR hardware territory**, and not reachable with a
   camera and a TV: at 30 fps the gap between camera frames is already 33 ms.
-- **Target under ~50 ms** motion-to-photon for the cursor to feel attached to the
+- **Tentative target under ~50 ms** motion-to-photon for the cursor to feel attached to the
   puck. 50–80 ms is acceptable; past ~100 ms it feels floaty.
 - Today is **estimated at 100–200 ms**. A tuned pipeline should land around
   **35–55 ms**. Almost none of the saving is in detection — it is the camera's
