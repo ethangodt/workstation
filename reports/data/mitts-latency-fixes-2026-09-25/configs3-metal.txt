@@ -1,0 +1,5 @@
+# label   levers (camera 60, Unity 60, 4K, pose off, lens on, 1€, exposure cap 4 throughout)
+metal-fresh0  {"cameraFps":60,"unityFps":60,"tvOutput":"4K","pose":false,"lensCorrection":true,"smoothing":"oneEuro","freshWaitMs":0,"frameLatency":1,"maxExposureMs":4,"delayMs":0}
+metal-fresh6  {"freshWaitMs":6}
+metal-fresh10 {"freshWaitMs":10}
+metal-fresh6b {"freshWaitMs":6}

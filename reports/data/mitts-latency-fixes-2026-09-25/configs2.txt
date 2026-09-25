@@ -1,0 +1,11 @@
+# label       levers (camera 60, Unity 60, 4K, pose off, lens on throughout)
+fixed         {"cameraFps":60,"unityFps":60,"tvOutput":"4K","pose":false,"lensCorrection":true,"smoothing":"oneEuro","freshWaitMs":6,"frameLatency":1,"maxExposureMs":0,"delayMs":0}
+frames2       {"frameLatency":2}
+frames1       {"frameLatency":1}
+fresh0        {"freshWaitMs":0}
+fresh10       {"freshWaitMs":10}
+fresh6        {"freshWaitMs":6}
+exp8          {"maxExposureMs":8}
+exp4          {"maxExposureMs":4}
+exp2          {"maxExposureMs":2}
+fixed-repeat  {"maxExposureMs":0}
