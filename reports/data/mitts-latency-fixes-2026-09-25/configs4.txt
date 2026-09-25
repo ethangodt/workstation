@@ -1,0 +1,3 @@
+d-fresh0  {"cameraFps":60,"unityFps":60,"tvOutput":"4K","pose":false,"lensCorrection":true,"smoothing":"oneEuro","freshWaitMs":0,"frameLatency":1,"maxExposureMs":4,"delayMs":0}
+d-fresh6  {"freshWaitMs":6}
+d-fresh10 {"freshWaitMs":10}

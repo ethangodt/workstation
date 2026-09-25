@@ -6,6 +6,8 @@
 **Code:** mitts-of-mayhem `feat/performance-monitoring` at `cdaed257` ([PR #4](https://github.com/ethangodt/mitts-of-mayhem/pull/4))
 **Raw data:** [`data/mitts-latency-sweep-2026-09-25/`](data/mitts-latency-sweep-2026-09-25/)
 
+> **Update:** the fixes recommended here were applied and measured, and one assumption here was wrong: display frame latency 2 → 1 made no difference; the classic display link was the fix. See [latency fixes, measured](mitts-latency-fixes.md).
+
 ## Question
 
 With the latency instrumentation in place, where does the time actually go

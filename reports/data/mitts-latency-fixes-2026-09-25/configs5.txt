@@ -1,0 +1,4 @@
+final-off-1  {"cameraFps":60,"unityFps":60,"tvOutput":"4K","pose":false,"lensCorrection":true,"smoothing":"oneEuro","freshWaitMs":0,"frameLatency":1,"maxExposureMs":4,"delayMs":0}
+final-on-1   {"freshWaitMs":14}
+final-off-2  {"freshWaitMs":0}
+final-on-2   {"freshWaitMs":14}
