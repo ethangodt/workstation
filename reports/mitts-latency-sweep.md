@@ -6,7 +6,49 @@
 **Code:** mitts-of-mayhem `feat/performance-monitoring` at `cdaed257` ([PR #4](https://github.com/ethangodt/mitts-of-mayhem/pull/4))
 **Raw data:** [`data/mitts-latency-sweep-2026-09-25/`](data/mitts-latency-sweep-2026-09-25/)
 
-> **Update:** the fixes recommended here were applied and measured, and one assumption here was wrong: display frame latency 2 → 1 made no difference; the classic display link was the fix. See [latency fixes, measured](mitts-latency-fixes.md).
+## Latest (end of 2026-09-25)
+
+The fixes recommended below were applied and measured the same day. Details,
+per-fix numbers and raw data: [latency fixes, measured](mitts-latency-fixes.md).
+Code at mitts-of-mayhem `3f028783`. The sections after this one are the
+original findings, kept as they were.
+
+| | as shipped | now |
+|---|---|---|
+| Capture → Unity finishes the frame | 66 ms | **~35 ms** |
+| Capture → frame scheduled for the TV | ~97 ms | **~50 ms** |
+| Unity frame rate at 4K | 30 (40 when asked for 60) | **60, steady** |
+| Estimated end to end, before HDMI and the TV | ~155 ms | **~62–66 ms** |
+
+What changed:
+
+- **Unity rendered at the phone's 3× scale on the 1× TV.** Fixed; it holds 60
+  fps at 4K.
+- **The classic `CADisplayLink`, not display frame latency, was the fix.**
+  Recommendation 1 below assumed frame latency 2 → 1 would save a refresh. It
+  made no difference (31.5 ms submit → scan-out either way). Unity's classic
+  display link measured ~15 ms and is now the default.
+- **The wait for Unity** (finding 3) is now handled by waiting briefly at the
+  start of each frame for a sample about to land, never past 5 ms before the
+  frame is due. Measured wait: 8–12.5 ms → 3.5–4 ms, with no missed refreshes.
+- **The camera timestamp marks the end of exposure** (finding 4's open
+  question). Capping exposure barely moves the camera stage, so exposure is
+  latency the HUD can't see. It's now capped at 4 ms, an estimated ~6 ms saving.
+- **One Euro smoothing** replaces the EMA and its roughly one-sample lag.
+- **Defaults are now the fast configuration:** camera 60, Unity 60, TV 4K, pose
+  off, lens correction on, exposure cap 4 ms, fresh wait on, classic display
+  link.
+
+Still open:
+
+1. **The 240 fps video test.** The only measurement of HDMI and the TV, and of
+   whether frames reach the display when scheduled. Now the most useful next
+   step.
+2. **The camera stage, ~28 ms** of readout and ISP. The largest remaining
+   piece; frame rate, lens correction and exposure don't touch it.
+3. **More light on the mat**, for 2 ms exposures at a lower ISO.
+4. **ADR-0012:** fill in from the video test and replace the HUD's provisional
+   40 ms budget.
 
 ## Question
 
