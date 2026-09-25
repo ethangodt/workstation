@@ -1,0 +1,11 @@
+# label              cam unity tv    lens  pose
+base-c30-u30-4K       30  30   4K    true  false
+c30-u60-4K            30  60   4K    true  false
+c60-u30-4K            60  30   4K    true  false
+c60-u60-4K            60  60   4K    true  false
+c60-u60-4K-lensoff    60  60   4K    false false
+c60-u60-1080p-lensoff 60  60   1080p false false
+c60-u60-1080p         60  60   1080p true  false
+c30-u60-1080p         30  60   1080p true  false
+c30-u60-1080p-pose    30  60   1080p true  true
+base2-c30-u30-4K      30  30   4K    true  false
