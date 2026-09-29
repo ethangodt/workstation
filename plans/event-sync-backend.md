@@ -31,7 +31,7 @@ or anything beyond "one shared, never-ending day".
 | Offline | Firestore SDK defaults (local cache + queued writes). Nothing extra |
 | Lane names | Stay per-device; existing hardcoded defaults (`["Ethan", "Emilie"]`) already match |
 | Firebase config | `GoogleService-Info.plist` committed to the (private) repo — it isn't a secret; rules are the guard |
-| Identifiers | Everything under the hood is `planner-for-parents`: bundle ID becomes `com.ethangodt.planner-for-parents` (was `com.ethangodt.planner`), Firebase project likewise. The user-facing display name is left alone until the naming task |
+| Identifiers | Everything under the hood is `planner-for-parents`: bundle ID becomes `com.ethangodt.planner-for-parents` (was `com.ethangodt.planner`), Firebase project likewise. Code names (`Planner` target/scheme, `PlannerApp`, `PlannerCore`, types, vars) stay `Planner`. The user-facing display name is left alone until the naming task |
 
 ## Why Firestore
 
