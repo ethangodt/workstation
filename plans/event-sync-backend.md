@@ -31,6 +31,7 @@ or anything beyond "one shared, never-ending day".
 | Offline | Firestore SDK defaults (local cache + queued writes). Nothing extra |
 | Lane names | Stay per-device; existing hardcoded defaults (`["Ethan", "Emilie"]`) already match |
 | Firebase config | `GoogleService-Info.plist` committed to the (private) repo — it isn't a secret; rules are the guard |
+| Identifiers | Everything under the hood is `planner-for-parents`: bundle ID becomes `com.ethangodt.planner-for-parents` (was `com.ethangodt.planner`), Firebase project likewise. The user-facing display name is left alone until the naming task |
 
 ## Why Firestore
 
@@ -147,8 +148,9 @@ relaunch). `PlannerEvent.samples` stays for previews and tests only.
 ## Firebase project setup (manual, done by Ethan)
 
 1. [console.firebase.google.com](https://console.firebase.google.com) → Add
-   project "planner-for-parents". Google Analytics: off. Plan: Spark (free).
-2. Add an iOS app with bundle ID `com.ethangodt.planner`. Download
+   project "planner-for-parents" (if that project ID is taken globally, accept
+   Firebase's suffixed ID). Google Analytics: off. Plan: Spark (free).
+2. Add an iOS app with bundle ID `com.ethangodt.planner-for-parents`. Download
    `GoogleService-Info.plist` and drop it into `App/` in the repo.
 3. Build → Authentication → Get started → Sign-in method → enable
    **Anonymous**.
@@ -185,16 +187,19 @@ planner-for-parents.
    row of the write-path table (DayStore may need to move its logic into a
    testable spot, or gain a small app test target — pick whichever is less
    churn).
-3. **Remove reset**: drop the reset control from `ChromePill`,
+3. **Bundle ID**: change `PRODUCT_BUNDLE_IDENTIFIER` in `project.yml` to
+   `com.ethangodt.planner-for-parents`. Existing free-provisioning installs
+   become a separate app; delete the old one from each phone.
+4. **Remove reset**: drop the reset control from `ChromePill`,
    `DrawController.reset()`, and `DayStore.reset()`; update the ChromePill doc
    comment.
-4. **Firebase wiring**: add `firebase-ios-sdk` (latest major) to
+5. **Firebase wiring**: add `firebase-ios-sdk` (latest major) to
    `project.yml` `packages:`, depend on `FirebaseAuth` + `FirebaseFirestore`
    in the `Planner` target only. `FirebaseApp.configure()` in `PlannerApp`.
    `FirestoreEventSync` with the `#if DEBUG` collection switch.
-5. **Rules + setup docs**: commit `firebase/firestore.rules`; add a short
+6. **Rules + setup docs**: commit `firebase/firestore.rules`; add a short
    "Backend" section to the README pointing at the setup steps above.
-6. **ADR-0010: Firestore for shared events** — supersedes
+7. **ADR-0010: Firestore for shared events** — supersedes
    ADR-0004 (in-memory state for exploration).
 
 ## Verification
