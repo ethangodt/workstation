@@ -197,6 +197,9 @@ planner-for-parents.
    `project.yml` `packages:`, depend on `FirebaseAuth` + `FirebaseFirestore`
    in the `Planner` target only. `FirebaseApp.configure()` in `PlannerApp`.
    `FirestoreEventSync` with the `#if DEBUG` collection switch.
+   The downloaded plist is at
+   `~/_Projects/Software/planner-for-parents/GoogleService-Info.plist`; copy it
+   into `App/` in the feature worktree and commit it.
 6. **Rules + setup docs**: commit `firebase/firestore.rules`; add a short
    "Backend" section to the README pointing at the setup steps above.
 7. **ADR-0010: Firestore for shared events** — supersedes
